@@ -14,31 +14,27 @@ function MyApp() {
   const [tristeza, setTristeza] = useState(0);
 
   const alimentar = () => {
-    setFome((valor) => Math.max(0, valor - 1));
+    setFome(fome - 1);
   };
 
   const darAtenção = () => {
-    setTristeza((valor) => Math.max(0, valor - 1));
+    setTristeza(tristeza - 1);
   };
 
-  const passarTempo = () => {
-    setFome((valor) => valor + 1);
-    setTristeza((valor) => valor + 1);
-  };
+  setTimeout(() => setFome(fome + 1), 10000);
+  setTimeout(() => setTristeza(tristeza + 1), 10000);
 
   return (
     <View style={styles.container}>
       <Image
-        source={{
-          uri: tristeza >= 3 ? img_triste : fome >= 3 ? img_fome : img_normal,
-        }}
+        source={{ uri: tristeza >= 3 ? img_triste : fome >= 3 ? img_fome : img_normal }}
         style={styles.image}
       />
       <Text>Fome: {fome}</Text>
       <Button title="Alimentar" onPress={alimentar} />
       <Text>Tristeza: {tristeza}</Text>
-      <Button title="Dar atenção" onPress={darAtenção} />
-      <Button title="Deixar o tempo passar" onPress={passarTempo} />
+      <Button title="Dar Atenção" onPress={darAtenção} />
+      
     </View>
   );
 }
